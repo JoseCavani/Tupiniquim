@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Tupiniquim
 {
@@ -6,28 +7,22 @@ namespace Tupiniquim
     {
         static void Main(string[] args)
         {
-
-            int contador =0;
-            int x2 = 3, y2 = 3, x = 1, y = 2;
-            char orientacao2 = 'L';
-            bool segundorobo = false;
-            char orientacao = 'N';
+            int contador = 0;
             while (true)
             {
-                volta:
+            volta:
+                List<Robo> robos = new List<Robo>();
+                Robo robo1 = new Robo(1, 2, 'N');
+                robos.Add(robo1);
+                Robo robo2 = new Robo(3, 3, 'L');
+                robos.Add(robo2);
                 Console.Clear();
-                Console.WriteLine("5 5");
-                if (segundorobo == false)
+                if (contador == 0)
                 {
-                    x = 1; y = 2; orientacao = 'N';//caso de algum valor invalido essa linha reseta os valores
-                    Console.WriteLine(x + " " + y + " " + orientacao);
+                    Console.WriteLine("5 5");
                 }
-                else
-                {
-                    x2 = 3; y2 = 3; orientacao2 = 'L'; //caso de algum valor invalido essa linha reseta os valores
-                    Console.WriteLine(x2 + " " + y2 + " " + orientacao2);
-                }
-
+                Console.WriteLine(robos[contador].X + " " + robos[contador].Y + " " + robos[contador].Orientacao);
+ 
                 string stringCommandos = Console.ReadLine();
                 foreach (char commando in stringCommandos.Trim())
                 {
@@ -40,167 +35,37 @@ namespace Tupiniquim
                         Console.WriteLine("sequencia contem valore(s) invalido(s)");
                         Console.ReadKey();
                         Console.ResetColor();
-                        goto volta; // coninue nao funcionou nao reseta valores na linha 26 e 21 e tambem faz o commando aconetecer novamnete para todos os valores incorretos
+                        robos.Remove(robos[contador]);
+                        goto volta; // coninue nao funcionou nao reseta valores e tambem faz o commando aconetecer novamnete para todos os valores incorretos
                     }
 
-                    if (segundorobo == false)
-                    {
                         switch (commando)
                         {
                             case 'E':
 
-                                switch (orientacao)
-                                {
-
-
-                                    case 'N':
-                                        orientacao = 'O';
-                                        break;
-                                    case 'O':
-                                        orientacao = 'S';
-                                        break;
-                                    case 'S':
-                                        orientacao = 'L';
-                                        break;
-                                    case 'L':
-                                        orientacao = 'N';
-                                        break;
-                                }
+                            robos[contador].Orientacao = Funcoes.esquerda(robos[contador].Orientacao);
                                 continue;
                             case 'D':
-                                switch (orientacao)
-                                {
-                                    case 'N':
-                                        orientacao = 'L';
-                                        break;
-                                    case 'O':
-                                        orientacao = 'N';
-                                        break;
-                                    case 'S':
-                                        orientacao = 'O';
-                                        break;
-                                    case 'L':
-                                        orientacao = 'S';
-                                        break;
-                                }
+                            robos[contador].Orientacao = Funcoes.direita(robos[contador].Orientacao); 
                                 continue;
                             case 'M':
-                                switch (orientacao)
-                                {
-                                    case 'L':
-                                        if (x < 5)
-                                        {
-                                            x = x + 1;
-                                        }
-                                        break;
-                                    case 'N':
-                                        if (y < 5)
-                                        {
-                                            y = y + 1;
-                                        }
-                                        
-                                        break;
-                                    case 'S':
-                                        if (y > 0)
-                                        {
-                                            y = y - 1;
-                                        }
-                                        break;
-                                    case 'O':
-                                        if (x > 0)
-                                        {
-                                            x = x - 1;
-                                        }
-                                        break;
-                                }
+                                if (robos[contador].Orientacao == 'N' || robos[contador].Orientacao == 'S')
+                                robos[contador].Y = Funcoes.movimento(robos[contador].Orientacao, robos[contador].Y);
+                                else
+                                robos[contador].X = Funcoes.movimento(robos[contador].Orientacao, robos[contador].X);
+
                                 continue;
                         }
                     }
-                    else
-                    {
-                        switch (commando)
-                        {
-                            case 'E':
 
-                                switch (orientacao2)
-                                {
-
-                                    case 'N':
-                                        orientacao2 = 'O';
-                                        break;
-                                    case 'O':
-                                        orientacao2 = 'S';
-                                        break;
-                                    case 'S':
-                                        orientacao2 = 'L';
-                                        break;
-                                    case 'L':
-                                        orientacao2 = 'N';
-                                        break;
-                                }
-                                continue;
-                            case 'D':
-                                switch (orientacao2)
-                                {
-                                    case 'N':
-                                        orientacao2 = 'L';
-                                        break;
-                                    case 'O':
-                                        orientacao2 = 'N';
-                                        break;
-                                    case 'S':
-                                        orientacao2 = 'O';
-                                        break;
-                                    case 'L':
-                                        orientacao2 = 'S';
-                                        break;
-                                }
-                                continue;
-                            case 'M':
-                                switch (orientacao2)
-                                {
-                                    case 'L':
-                                        if (x2 < 5)
-                                        {
-                                            x2 = x2 + 1;
-                                        }
-                                        break;
-                                    case 'N':
-                                        if (y2 < 5)
-                                        {
-                                            y2 = y2 + 1;
-                                        }
-                                        break;
-                                    case 'S':
-                                        if (y2 > 0)
-                                        {
-                                            y2 = y2 - 1;
-                                        }
-                                        break;
-                                    case 'O':
-                                        if (x2 > 0)
-                                        {
-                                            x2 = x2 - 1;
-                                        }
-                                        break;
-                                }
-                                continue;
-                        }
-                    }
-                }
-                
-                segundorobo = true;
-                contador++;
-                if (contador == 1)
-                {
-                    Console.WriteLine("posição do robo 1 : " + x + " " + y + " " + orientacao);
-                    Console.WriteLine("aperta alguma tecla para iniciar o segundo robo");
+                    Console.WriteLine( robos[contador].X + " " + robos[contador].Y + " " + robos[contador].Orientacao);
                     Console.ReadKey();
+                contador++;
+                if (robos.Count != contador)
+                {
                     continue;
                 }
-                else 
-                Console.WriteLine("posição do robo 2 : " + x2 + " " + y2 + " " + orientacao2);
-                Console.ReadKey ();
+                else
                 break;
             }
         }
