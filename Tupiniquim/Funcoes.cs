@@ -48,18 +48,18 @@ namespace Tupiniquim
             }
             return orientacao;
         }
-        public static int movimento(char orientacao, int valor)
+        public static int movimento(char orientacao, int valor,int max)
         {
             switch (orientacao)
             {
                 case 'L':
-                    if (valor < 5)
+                    if (valor < max)
                     {
                         valor = valor + 1;
                     }
                     break;
                 case 'N':
-                    if (valor < 5)
+                    if (valor < max)
                     {
                         valor = valor + 1;
                     }

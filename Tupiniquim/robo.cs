@@ -21,6 +21,10 @@ namespace Tupiniquim
             this.y = y; 
             this.orientacao = orientacao;  
         }
+        public Robo()
+        {
+
+        }
     }
    
 }

@@ -7,23 +7,54 @@ namespace Tupiniquim
     {
         static void Main(string[] args)
         {
-            int contador = 0;
+            int maxY = 0, maxX = 0;
+            string posicao;
+            List<Robo> robos = new List<Robo>();
             while (true)
             {
-            
-                List<Robo> robos = new List<Robo>();
-                Robo robo1 = new Robo(1, 2, 'N');
-                robos.Add(robo1);
-                Robo robo2 = new Robo(3, 3, 'L');
-                robos.Add(robo2);
+                Robo robo = new Robo();
+                if (robos.Count == 0)
+                {
+                    Console.WriteLine("digite os valores maximos de X e Y seperado por espaco (X Y)");
+                    posicao = Console.ReadLine();
+                    try
+                    {
+                        maxX = int.Parse(posicao.Split(' ')[0]);
+                        maxY = int.Parse(posicao.Split(' ')[1]);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("sequencia contem valore(s) invalido(s)");
+                        Console.ReadKey();
+                        Console.ResetColor();
+                        continue;
+                    }
+                }
             volta:
                 Console.Clear();
-                if (contador == 0)
+                Console.WriteLine($"digite os valores  iniciais do robo {robos.Count + 1} seperado por espaco (X Y Orientação)");
+                posicao = Console.ReadLine();
+                try
                 {
-                    Console.WriteLine("5 5");
+                    robo.X = int.Parse(posicao.Split(' ')[0]);
+                    robo.Y = int.Parse(posicao.Split(' ')[1]);
+                    robo.Orientacao = char.Parse(posicao.ToUpper().Split(' ')[2]);
                 }
-                Console.WriteLine(robos[contador].X + " " + robos[contador].Y + " " + robos[contador].Orientacao);
- 
+                catch (Exception ex)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("sequencia contem valore(s) invalido(s)");
+                    Console.ReadKey();
+                    Console.ResetColor();
+                    goto volta;
+                }
+                Console.Clear();
+
+                Console.Write("instruções: \n Letra E gira 90 graus para a esquerda\n Letra D gira 90" +
+                    " graus para a direita \n Letra M movimenta para frente \n");
+
+                Console.WriteLine("digite os commandos");
                 string stringCommandos = Console.ReadLine();
 
                 foreach (char commando in stringCommandos.Trim())
@@ -46,30 +77,35 @@ namespace Tupiniquim
                         {
                             case 'E':
 
-                            robos[contador].Orientacao = Funcoes.esquerda(robos[contador].Orientacao);
+                            robo.Orientacao = Funcoes.esquerda(robo.Orientacao);
                                 continue;
                             case 'D':
-                            robos[contador].Orientacao = Funcoes.direita(robos[contador].Orientacao); 
+                            robo.Orientacao = Funcoes.direita(robo.Orientacao); 
                                 continue;
                             case 'M':
-                                if (robos[contador].Orientacao == 'N' || robos[contador].Orientacao == 'S')
-                                robos[contador].Y = Funcoes.movimento(robos[contador].Orientacao, robos[contador].Y);
+                                if (robo.Orientacao == 'N' || robo.Orientacao == 'S')
+                                robo.Y = Funcoes.movimento(robo.Orientacao, robo.Y, maxY);
                                 else
-                                robos[contador].X = Funcoes.movimento(robos[contador].Orientacao, robos[contador].X);
-
+                                robo.X = Funcoes.movimento(robo.Orientacao, robo.X, maxX);
                                 continue;
                         }
                     }
-
-                    Console.WriteLine( robos[contador].X + " " + robos[contador].Y + " " + robos[contador].Orientacao);
-                    Console.ReadKey();
-                contador++;
-                if (robos.Count != contador)
+                    robos.Add(robo);
+                    Console.WriteLine( robo.X + " " + robo.Y + " " + robo.Orientacao);
+                    Console.ReadKey(true);
+                if (robos.Count != 2)
                 {
                     continue;
                 }
                 else
-                break;
+                {
+                    foreach (var item in robos)
+                    {
+                        Console.WriteLine($"robo {robos.IndexOf(item) + 1} posição : " + item.X + " " + item.Y + " " + item.Orientacao);
+                    }
+                    Console.ReadKey(true);
+                    break;
+                }
             }
         }
     }
