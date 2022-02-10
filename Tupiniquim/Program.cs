@@ -22,7 +22,7 @@ namespace Tupiniquim
                         maxX = int.Parse(posicao.Split(' ')[0]);
                         maxY = int.Parse(posicao.Split(' ')[1]);
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("sequencia contem valore(s) invalido(s)");
@@ -41,7 +41,7 @@ namespace Tupiniquim
                     robo.Y = int.Parse(posicao.Split(' ')[1]);
                     robo.Orientacao = char.Parse(posicao.ToUpper().Split(' ')[2]);
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("sequencia contem valore(s) invalido(s)");
