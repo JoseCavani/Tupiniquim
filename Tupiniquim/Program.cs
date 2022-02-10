@@ -51,6 +51,7 @@ namespace Tupiniquim
                 }
                 else
                 {
+                    volta2:
                     Console.WriteLine($"digite os valores  iniciais do robo 2 seperado por espaco (X Y Orientação)");
                     posicao = Console.ReadLine();
                     try
@@ -65,7 +66,7 @@ namespace Tupiniquim
                         Console.WriteLine("sequencia contem valore(s) invalido(s)");
                         Console.ReadKey();
                         Console.ResetColor();
-                        goto volta;
+                        goto volta2;
                     }
                     Console.Clear();
                 }
@@ -76,7 +77,7 @@ namespace Tupiniquim
 
 
                 string stringCommandos = Console.ReadLine();
-                foreach (char commando in stringCommandos.Trim())
+                foreach (char commando in stringCommandos.Trim()) //EMME
                 {
                     if (commando != 'E' && commando != 'D' && commando != 'M')
                     {
@@ -132,13 +133,13 @@ namespace Tupiniquim
                                 switch (orientacao)
                                 {
                                     case 'L':
-                                        if (x < 5)
+                                        if (x < maxX)
                                         {
                                             x = x + 1;
                                         }
                                         break;
                                     case 'N':
-                                        if (y < 5)
+                                        if (y < maxY)
                                         {
                                             y = y + 1;
                                         }
