@@ -10,12 +10,13 @@ namespace Tupiniquim
             int contador = 0;
             while (true)
             {
-            volta:
+            
                 List<Robo> robos = new List<Robo>();
                 Robo robo1 = new Robo(1, 2, 'N');
                 robos.Add(robo1);
                 Robo robo2 = new Robo(3, 3, 'L');
                 robos.Add(robo2);
+            volta:
                 Console.Clear();
                 if (contador == 0)
                 {
@@ -24,10 +25,9 @@ namespace Tupiniquim
                 Console.WriteLine(robos[contador].X + " " + robos[contador].Y + " " + robos[contador].Orientacao);
  
                 string stringCommandos = Console.ReadLine();
+
                 foreach (char commando in stringCommandos.Trim())
                 {
-
-                  
                     if (commando != 'E' && commando != 'D' && commando != 'M')
                     {
                         Console.Clear();
@@ -35,9 +35,12 @@ namespace Tupiniquim
                         Console.WriteLine("sequencia contem valore(s) invalido(s)");
                         Console.ReadKey();
                         Console.ResetColor();
-                        robos.Remove(robos[contador]);
-                        goto volta; // coninue nao funcionou nao reseta valores e tambem faz o commando aconetecer novamnete para todos os valores incorretos
+                        goto volta; // coninue faz o commando aconetecer novamnete para todos os valores incorretos
                     }
+                }
+
+                    foreach (char commando in stringCommandos.Trim())
+                {
 
                         switch (commando)
                         {
