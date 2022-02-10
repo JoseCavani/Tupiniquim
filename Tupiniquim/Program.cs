@@ -7,7 +7,6 @@ namespace Tupiniquim
         static void Main(string[] args)
         {
 
-            int contador = 0;
             int x2 = 3, y2 = 3, x = 1, y = 2;
             char orientacao2 = 'L';
             bool segundorobo = false;
@@ -16,23 +15,21 @@ namespace Tupiniquim
             {
             volta:
                 Console.Clear();
-                Console.WriteLine("5 5");
                 if (segundorobo == false)
                 {
-                    x = 1; y = 2; orientacao = 'N';//caso de algum valor invalido essa linha reseta os valores
+                    Console.WriteLine("5 5");
                     Console.WriteLine(x + " " + y + " " + orientacao);
+                    
                 }
                 else
                 {
-                    x2 = 3; y2 = 3; orientacao2 = 'L'; //caso de algum valor invalido essa linha reseta os valores
-                    Console.WriteLine(x2 + " " + y2 + " " + orientacao2);
+                     Console.WriteLine(x2 + " " + y2 + " " + orientacao2);
                 }
 
                 string stringCommandos = Console.ReadLine();
-                foreach (char commando in stringCommandos.Trim())
+
+                     foreach (char commando in stringCommandos.Trim())
                 {
-
-
                     if (commando != 'E' && commando != 'D' && commando != 'M')
                     {
                         Console.Clear();
@@ -42,6 +39,13 @@ namespace Tupiniquim
                         Console.ResetColor();
                         goto volta; // coninue nao funcionou nao reseta valores na linha 26 e 21 e tambem faz o commando aconetecer novamnete para todos os valores incorretos
                     }
+                }
+
+                    foreach (char commando in stringCommandos.Trim())
+                {
+
+
+                    
 
                     if (segundorobo == false)
                     {
@@ -188,18 +192,15 @@ namespace Tupiniquim
                         }
                     }
                 }
-
-                segundorobo = true;
-                contador++;
-                if (contador == 1)
+                if (segundorobo == false)
                 {
-                    Console.WriteLine("posição do robo 1 : " + x + " " + y + " " + orientacao);
-                    Console.WriteLine("aperta alguma tecla para iniciar o segundo robo");
+                    Console.WriteLine(+ x + " " + y + " " + orientacao);
                     Console.ReadKey();
+                    segundorobo = true;
                     continue;
                 }
                 else
-                    Console.WriteLine("posição do robo 2 : " + x2 + " " + y2 + " " + orientacao2);
+                    Console.WriteLine( x2 + " " + y2 + " " + orientacao2);
                 Console.ReadKey();
                 break;
             }
