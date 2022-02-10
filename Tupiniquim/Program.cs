@@ -40,6 +40,8 @@ namespace Tupiniquim
                     robo.X = int.Parse(posicao.Split(' ')[0]);
                     robo.Y = int.Parse(posicao.Split(' ')[1]);
                     robo.Orientacao = char.Parse(posicao.ToUpper().Split(' ')[2]);
+                    if (robo.Orientacao != 'l' && robo.Orientacao != 'O' && robo.Orientacao != 'N' && robo.Orientacao != 'S')
+                        throw new Exception();
                 }
                 catch (Exception)
                 {
