@@ -1,12 +1,10 @@
 ﻿using System;
-
 namespace Tupiniquim
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-
             int x2 = 3, y2 = 3, x = 1, y = 2;
             char orientacao2 = 'L';
             bool segundorobo = false;
@@ -19,16 +17,13 @@ namespace Tupiniquim
                 {
                     Console.WriteLine("5 5");
                     Console.WriteLine(x + " " + y + " " + orientacao);
-                    
                 }
                 else
                 {
-                     Console.WriteLine(x2 + " " + y2 + " " + orientacao2);
+                    Console.WriteLine(x2 + " " + y2 + " " + orientacao2);
                 }
-
                 string stringCommandos = Console.ReadLine();
-
-                     foreach (char commando in stringCommandos.Trim())
+                foreach (char commando in stringCommandos.Trim())
                 {
                     if (commando != 'E' && commando != 'D' && commando != 'M')
                     {
@@ -40,23 +35,15 @@ namespace Tupiniquim
                         goto volta; // coninue nao funcionou nao reseta valores na linha 26 e 21 e tambem faz o commando aconetecer novamnete para todos os valores incorretos
                     }
                 }
-
-                    foreach (char commando in stringCommandos.Trim())
+                foreach (char commando in stringCommandos.Trim())
                 {
-
-
-                    
-
                     if (segundorobo == false)
                     {
                         switch (commando)
                         {
                             case 'E':
-
                                 switch (orientacao)
                                 {
-
-
                                     case 'N':
                                         orientacao = 'O';
                                         break;
@@ -102,7 +89,6 @@ namespace Tupiniquim
                                         {
                                             y = y + 1;
                                         }
-
                                         break;
                                     case 'S':
                                         if (y > 0)
@@ -125,10 +111,8 @@ namespace Tupiniquim
                         switch (commando)
                         {
                             case 'E':
-
                                 switch (orientacao2)
                                 {
-
                                     case 'N':
                                         orientacao2 = 'O';
                                         break;
@@ -194,13 +178,13 @@ namespace Tupiniquim
                 }
                 if (segundorobo == false)
                 {
-                    Console.WriteLine(+ x + " " + y + " " + orientacao);
+                    Console.WriteLine(+x + " " + y + " " + orientacao);
                     Console.ReadKey();
                     segundorobo = true;
                     continue;
                 }
                 else
-                    Console.WriteLine( x2 + " " + y2 + " " + orientacao2);
+                    Console.WriteLine(x2 + " " + y2 + " " + orientacao2);
                 Console.ReadKey();
                 break;
             }
