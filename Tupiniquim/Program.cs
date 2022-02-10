@@ -52,7 +52,7 @@ namespace Tupiniquim
                     goto volta;
                 }
                 Console.Clear();
-
+                volta2:
                 Console.Write("instruções: \n Letra E gira 90 graus para a esquerda\n Letra D gira 90" +
                     " graus para a direita \n Letra M movimenta para frente \n");
 
@@ -68,7 +68,7 @@ namespace Tupiniquim
                         Console.WriteLine("sequencia contem valore(s) invalido(s)");
                         Console.ReadKey();
                         Console.ResetColor();
-                        goto volta; // coninue faz o commando aconetecer novamnete para todos os valores incorretos
+                        goto volta2; // coninue faz o commando aconetecer novamnete para todos os valores incorretos
                     }
                 }
 
