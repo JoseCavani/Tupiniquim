@@ -5,7 +5,8 @@ namespace Tupiniquim
     {
         static void Main(string[] args)
         {
-            int x2 = 3, y2 = 3, x = 1, y = 2;
+            int x2 = 3, y2 = 3, x = 1, y = 2,maxX=0,maxY=0;
+            string posicao;
             char orientacao2 = 'L';
             bool segundorobo = false;
             char orientacao = 'N';
@@ -15,13 +16,65 @@ namespace Tupiniquim
                 Console.Clear();
                 if (segundorobo == false)
                 {
-                    Console.WriteLine("5 5");
-                    Console.WriteLine(x + " " + y + " " + orientacao);
+                    Console.WriteLine("digite os valores maximos de X e Y seperado por espaco (X Y)");
+                    posicao = Console.ReadLine();
+                    try
+                    {
+                        maxX = int.Parse(posicao.Split(' ')[0]);
+                        maxY = int.Parse(posicao.Split(' ')[1]);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("sequencia contem valore(s) invalido(s)");
+                        Console.ReadKey();
+                        Console.ResetColor();
+                        continue;
+                    }
+                    Console.WriteLine($"digite os valores  iniciais do robo 1 seperado por espaco (X Y Orientação)");
+                    posicao = Console.ReadLine();
+                    try
+                    {
+                       x = int.Parse(posicao.Split(' ')[0]);
+                        y = int.Parse(posicao.Split(' ')[1]);
+                        orientacao = char.Parse(posicao.ToUpper().Split(' ')[2]);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("sequencia contem valore(s) invalido(s)");
+                        Console.ReadKey();
+                        Console.ResetColor();
+                        goto volta;
+                    }
+                    Console.Clear();
                 }
                 else
                 {
-                    Console.WriteLine(x2 + " " + y2 + " " + orientacao2);
+                    Console.WriteLine($"digite os valores  iniciais do robo 2 seperado por espaco (X Y Orientação)");
+                    posicao = Console.ReadLine();
+                    try
+                    {
+                        x2= int.Parse(posicao.Split(' ')[0]);
+                        y2 = int.Parse(posicao.Split(' ')[1]);
+                        orientacao2 = char.Parse(posicao.ToUpper().Split(' ')[2]);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("sequencia contem valore(s) invalido(s)");
+                        Console.ReadKey();
+                        Console.ResetColor();
+                        goto volta;
+                    }
+                    Console.Clear();
                 }
+                Console.Write("instruções: \n Letra E gira 90 graus para a esquerda\n Letra D gira 90" +
+                   " graus para a direita \n Letra M movimenta para frente \n");
+
+                Console.WriteLine("digite os commandos");
+
+
                 string stringCommandos = Console.ReadLine();
                 foreach (char commando in stringCommandos.Trim())
                 {
@@ -184,9 +237,12 @@ namespace Tupiniquim
                     continue;
                 }
                 else
+                {
+                    Console.WriteLine(+x + " " + y + " " + orientacao);
                     Console.WriteLine(x2 + " " + y2 + " " + orientacao2);
-                Console.ReadKey();
-                break;
+                    Console.ReadKey();
+                    break;
+                }
             }
         }
     }
