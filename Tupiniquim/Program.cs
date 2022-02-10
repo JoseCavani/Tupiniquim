@@ -17,13 +17,13 @@ namespace Tupiniquim
                 if (segundorobo == false)
                 {
                     Console.WriteLine("digite os valores maximos de X e Y seperado por espaco (X Y)");
-                    posicao = Console.ReadLine();
+                    posicao = Console.ReadLine();// 4 5
                     try
                     {
-                        maxX = int.Parse(posicao.Split(' ')[0]);
+                        maxX = int.Parse(posicao.Split(' ')[0]);//4 5
                         maxY = int.Parse(posicao.Split(' ')[1]);
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("sequencia contem valore(s) invalido(s)");
@@ -31,21 +31,25 @@ namespace Tupiniquim
                         Console.ResetColor();
                         continue;
                     }
+                    volta1:
                     Console.WriteLine($"digite os valores  iniciais do robo 1 seperado por espaco (X Y Orientação)");
                     posicao = Console.ReadLine();
                     try
                     {
                        x = int.Parse(posicao.Split(' ')[0]);
-                        y = int.Parse(posicao.Split(' ')[1]);
-                        orientacao = char.Parse(posicao.ToUpper().Split(' ')[2]);
+                       y = int.Parse(posicao.Split(' ')[1]);
+                       orientacao = char.Parse(posicao.ToUpper().Split(' ')[2]);
+                        if (x>maxX || y>maxY || x< 0 || y < 0)
+                            throw new InvalidOperationException();
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
+                        Console.Clear();
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("sequencia contem valore(s) invalido(s)");
                         Console.ReadKey();
                         Console.ResetColor();
-                        goto volta;
+                        goto volta1;
                     }
                     Console.Clear();
                 }
@@ -59,8 +63,10 @@ namespace Tupiniquim
                         x2= int.Parse(posicao.Split(' ')[0]);
                         y2 = int.Parse(posicao.Split(' ')[1]);
                         orientacao2 = char.Parse(posicao.ToUpper().Split(' ')[2]);
+                        if (x > maxX || y > maxY || x < 0 || y < 0)
+                                throw new InvalidOperationException();
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("sequencia contem valore(s) invalido(s)");
