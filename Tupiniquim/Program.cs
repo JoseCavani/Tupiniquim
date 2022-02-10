@@ -17,10 +17,10 @@ namespace Tupiniquim
                 if (segundorobo == false)
                 {
                     Console.WriteLine("digite os valores maximos de X e Y seperado por espaco (X Y)");
-                    posicao = Console.ReadLine();// 4 5
+                    posicao = Console.ReadLine();
                     try
                     {
-                        maxX = int.Parse(posicao.Split(' ')[0]);//4 5
+                        maxX = int.Parse(posicao.Split(' ')[0]);
                         maxY = int.Parse(posicao.Split(' ')[1]);
                     }
                     catch (Exception)
