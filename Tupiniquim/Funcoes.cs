@@ -53,11 +53,6 @@ namespace Tupiniquim
             switch (orientacao)
             {
                 case 'L':
-                    if (valor < max)
-                    {
-                        valor = valor + 1;
-                    }
-                    break;
                 case 'N':
                     if (valor < max)
                     {
@@ -66,11 +61,6 @@ namespace Tupiniquim
 
                     break;
                 case 'S':
-                    if (valor > 0)
-                    {
-                        valor = valor - 1;
-                    }
-                    break;
                 case 'O':
                     if (valor > 0)
                     {
